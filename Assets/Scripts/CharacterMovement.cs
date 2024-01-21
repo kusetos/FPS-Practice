@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+[RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
     [Header("Movement Stats")]
@@ -18,7 +19,6 @@ public class CharacterMovement : MonoBehaviour
 
     [Header("Gravity parameters")]
     [SerializeField] private float _gravityForce = 9.8f;
-    private float _currentAttractionCaracter = 0;
 
     [Header("Character components")]
     private CharacterController _characterController;
@@ -28,7 +28,7 @@ public class CharacterMovement : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
 
         float maxHeightTime = _maxJumpTime / 2;
-        var tempGravityForce = (2 * _maxJumpHeight) / Mathf.Pow(maxHeightTime, 2);
+        var GravityForce = (2 * _maxJumpHeight) / Mathf.Pow(maxHeightTime, 2);
         _startJumpVelocity = (2 * _maxJumpHeight) / maxHeightTime;
     }
 
